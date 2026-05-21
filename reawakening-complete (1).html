@@ -1,0 +1,2180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Reawakening · Silver Deltaversary · Spring 2027</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600;700&family=Jost:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+<style>
+
+/* ============================================
+   SITE MODE — Silver Deltaversary · Crimson · Cream · Silver
+   ============================================ */
+:root {
+  --black: #0A0505;
+  --deep: #1A0505;
+  --crimson: #8B0000;
+  --crimson-light: #A50000;
+  --crimson-dark: #5C0000;
+  --silver: #C0C0C0;
+  --silver-light: #E8E8E8;
+  --silver-dark: #909090;
+  --gold: #C0C0C0;
+  --gold-light: #E8E8E8;
+  --cream: #FAF0E6;
+  --white: #FFF8F0;
+  --muted: rgba(250,240,230,0.5);
+  --border: rgba(192,192,192,0.25);
+  /* Portal vars */
+  --surface: #160505;
+  --card: #1E0808;
+  --teal: #8B0000;
+  --teal-light: #A50000;
+  --p-border: rgba(192,192,192,0.25);
+  --green: #4CAF70;
+  --amber: #F59E0B;
+  --red: #EF4444;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--deep);
+  color: var(--cream);
+  font-family: 'Jost', sans-serif;
+  font-weight: 300;
+  overflow-x: hidden;
+}
+
+/* ---- VIEW SWITCHER ---- */
+.site-view, .portal-view { display: none; }
+.site-view.active, .portal-view.active { display: block; }
+
+/* ---- PORTAL SCREEN SYSTEM ---- */
+.p-screen { display: none; min-height: 100vh; flex-direction: column; }
+.p-screen.active { display: flex; }
+
+/* ============================================
+   WEBSITE NAV
+   ============================================ */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 20px 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: linear-gradient(180deg, rgba(26,5,5,0.97) 0%, transparent 100%);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(192,192,192,0.1);
+}
+
+.nav-logo {
+  font-family: 'Cormorant', serif;
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  color: var(--gold);
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.nav-links {
+  display: flex;
+  gap: 32px;
+  list-style: none;
+  align-items: center;
+}
+
+.nav-links a {
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.3s;
+  cursor: pointer;
+}
+
+.nav-links a:hover { color: var(--gold); }
+
+.nav-portal-btn {
+  background: var(--teal);
+  color: var(--cream) !important;
+  padding: 10px 20px;
+  font-size: 9px !important;
+  letter-spacing: 3px !important;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s !important;
+}
+
+.nav-portal-btn:hover { background: var(--teal-light) !important; }
+
+.nav-cta {
+  background: var(--crimson);
+  color: var(--cream) !important;
+  padding: 10px 20px;
+  font-size: 9px !important;
+  letter-spacing: 3px !important;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s !important;
+}
+
+.nav-cta:hover { background: var(--crimson-light) !important; }
+
+/* ============================================
+   CUSTOM CURSOR
+   ============================================ */
+.cursor {
+  width: 8px; height: 8px;
+  background: var(--gold);
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  transition: transform 0.15s ease;
+  mix-blend-mode: difference;
+}
+
+/* ============================================
+   HERO
+   ============================================ */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  padding: 120px 24px 80px;
+}
+
+.hero-bg {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse at 20% 50%, rgba(139,0,0,0.35) 0%, transparent 55%),
+    radial-gradient(ellipse at 80% 50%, rgba(192,192,192,0.08) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 100%, rgba(139,0,0,0.25) 0%, transparent 60%);
+}
+
+.hero-grid {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(192,192,192,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(192,192,192,0.05) 1px, transparent 1px);
+  background-size: 80px 80px;
+}
+
+.hero-content { position: relative; z-index: 2; }
+
+.hero-eyebrow {
+  font-size: 9px; letter-spacing: 8px; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 28px;
+  opacity: 0; animation: fadeUp 1s ease 0.2s forwards;
+}
+
+.hero-title {
+  font-family: 'Cormorant', serif;
+  font-size: clamp(60px, 12vw, 160px);
+  font-weight: 300; line-height: 0.9;
+  color: var(--cream); margin-bottom: 12px;
+  opacity: 0; animation: fadeUp 1s ease 0.4s forwards;
+}
+
+.hero-title em { font-style: italic; color: var(--gold); display: block; }
+
+.hero-subtitle {
+  font-family: 'Cormorant', serif;
+  font-size: clamp(16px, 2.5vw, 28px);
+  font-weight: 300; font-style: italic;
+  color: var(--muted); margin-bottom: 48px;
+  opacity: 0; animation: fadeUp 1s ease 0.6s forwards;
+}
+
+.hero-divider {
+  width: 120px; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--crimson), var(--silver), var(--crimson), transparent);
+  margin: 0 auto 48px;
+  opacity: 0; animation: fadeUp 1s ease 0.8s forwards;
+}
+
+.hero-stats {
+  display: flex; gap: 60px;
+  justify-content: center; flex-wrap: wrap;
+  opacity: 0; animation: fadeUp 1s ease 1s forwards;
+}
+
+.hero-stat { text-align: center; }
+
+.hero-stat-num {
+  font-family: 'Cormorant', serif; font-size: 52px;
+  font-weight: 300; color: var(--gold); line-height: 1; margin-bottom: 6px;
+}
+
+.hero-stat-label {
+  font-size: 9px; letter-spacing: 4px;
+  text-transform: uppercase; color: var(--muted);
+}
+
+.scroll-hint {
+  position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+  opacity: 0; animation: fadeUp 1s ease 1.4s forwards;
+}
+
+.scroll-line {
+  width: 1px; height: 60px;
+  background: linear-gradient(180deg, var(--silver), transparent);
+  animation: scrollPulse 2s ease infinite;
+}
+
+.scroll-text { font-size: 8px; letter-spacing: 4px; text-transform: uppercase; color: var(--muted); }
+
+@keyframes scrollPulse { 0%,100% { opacity:0.4; } 50% { opacity:1; } }
+@keyframes fadeUp { from { opacity:0; transform:translateY(24px); } to { opacity:1; transform:translateY(0); } }
+@keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+
+/* ============================================
+   SECTION BASE
+   ============================================ */
+section { padding: 100px 48px; max-width: 1200px; margin: 0 auto; }
+
+.section-label {
+  display: flex; align-items: center; gap: 16px; margin-bottom: 48px;
+}
+
+.section-label-line {
+  flex: 1; height: 1px;
+  background: linear-gradient(90deg, rgba(201,168,76,0.3), transparent);
+}
+.section-label-line.right {
+  background: linear-gradient(90deg, transparent, rgba(201,168,76,0.3));
+}
+
+.section-label span {
+  font-size: 9px; letter-spacing: 5px;
+  text-transform: uppercase; color: var(--silver); white-space: nowrap;
+}
+
+.section-title {
+  font-family: 'Cormorant', serif;
+  font-size: clamp(36px, 5vw, 72px);
+  font-weight: 300; line-height: 1.05; margin-bottom: 16px;
+}
+
+.section-title em { font-style: italic; color: var(--gold); }
+
+.section-desc {
+  font-size: 14px; color: var(--muted);
+  line-height: 1.8; max-width: 600px;
+}
+
+/* ============================================
+   DESTINATION
+   ============================================ */
+.dest-reveal {
+  position: relative; overflow: hidden;
+  background: var(--black); border: 1px solid var(--border);
+  padding: 80px 60px; text-align: center; margin-top: 48px;
+}
+
+.dest-reveal::before {
+  content: '?'; position: absolute;
+  font-family: 'Cormorant', serif; font-size: 400px;
+  color: rgba(201,168,76,0.04);
+  top: 50%; left: 50%; transform: translate(-50%,-50%);
+  line-height: 1; pointer-events: none;
+}
+
+.dest-status {
+  font-size: 9px; letter-spacing: 5px; text-transform: uppercase;
+  color: var(--crimson); margin-bottom: 20px;
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+}
+
+.dest-status::before {
+  content: ''; width: 6px; height: 6px; border-radius: 50%;
+  background: var(--crimson); animation: pulse 2s ease infinite;
+}
+
+@keyframes pulse { 0%,100%{opacity:1;transform:scale(1);} 50%{opacity:0.5;transform:scale(1.3);} }
+
+.dest-title {
+  font-family: 'Cormorant', serif;
+  font-size: clamp(40px, 7vw, 90px);
+  font-weight: 300; font-style: italic;
+  color: var(--cream); margin-bottom: 16px; line-height: 1;
+}
+
+.dest-desc {
+  font-size: 14px; color: var(--muted);
+  max-width: 500px; margin: 0 auto 32px; line-height: 1.8;
+}
+
+.dest-options {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 2px; max-width: 700px; margin: 0 auto;
+}
+
+.dest-option {
+  padding: 24px; background: rgba(255,255,255,0.02);
+  border: 1px solid var(--border); transition: all 0.3s;
+}
+
+.dest-option:hover { background: rgba(201,168,76,0.05); border-color: rgba(201,168,76,0.4); }
+.dest-option-flag { font-size: 32px; margin-bottom: 8px; }
+
+.dest-option-name {
+  font-family: 'Cormorant', serif; font-size: 24px;
+  color: var(--cream); margin-bottom: 4px;
+}
+
+.dest-option-sub { font-size: 11px; color: var(--muted); letter-spacing: 1px; }
+
+/* ============================================
+   ACCOMMODATIONS
+   ============================================ */
+.accom-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2px; margin-top: 48px;
+}
+
+.accom-card {
+  background: var(--black); border: 1px solid var(--border);
+  padding: 36px; position: relative; overflow: hidden; transition: all 0.4s;
+}
+
+.accom-card::after {
+  content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, var(--crimson), var(--silver));
+  transform: scaleX(0); transform-origin: left; transition: transform 0.4s ease;
+}
+
+.accom-card:hover::after { transform: scaleX(1); }
+.accom-card:hover { border-color: rgba(201,168,76,0.3); }
+
+.accom-type {
+  font-size: 9px; letter-spacing: 4px; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 14px;
+}
+
+.accom-name {
+  font-family: 'Cormorant', serif; font-size: 28px;
+  font-weight: 400; color: var(--cream); margin-bottom: 8px; line-height: 1.1;
+}
+
+.accom-location {
+  font-size: 11px; color: var(--muted); letter-spacing: 2px;
+  margin-bottom: 16px; text-transform: uppercase;
+}
+
+.accom-desc {
+  font-size: 13px; color: var(--muted); line-height: 1.75; margin-bottom: 20px;
+}
+
+.accom-features { display: flex; flex-wrap: wrap; gap: 6px; }
+
+.feature-tag {
+  font-size: 9px; letter-spacing: 1px; padding: 4px 10px;
+  border: 1px solid rgba(192,192,192,0.25); color: var(--silver); text-transform: uppercase;
+}
+
+/* ============================================
+   ITINERARY
+   ============================================ */
+.itinerary-wrap { margin-top: 48px; }
+
+.day-selector { display: flex; gap: 2px; margin-bottom: 2px; flex-wrap: wrap; }
+
+.day-btn {
+  flex: 1; min-width: 100px;
+  background: rgba(255,255,255,0.02); border: 1px solid var(--border);
+  color: var(--muted); font-family: 'Jost', sans-serif;
+  font-size: 9px; letter-spacing: 3px; text-transform: uppercase;
+  padding: 14px; cursor: pointer; transition: all 0.25s; border-bottom: 2px solid transparent;
+}
+
+.day-btn:hover, .day-btn.active {
+  color: var(--silver-light); border-bottom-color: var(--crimson);
+  background: rgba(139,0,0,0.06);
+}
+
+.day-panel {
+  display: none; background: var(--black); border: 1px solid var(--border);
+  padding: 48px; animation: fadeIn 0.3s ease;
+}
+
+.day-panel.active { display: block; }
+
+.day-header {
+  display: flex; align-items: flex-end; gap: 24px;
+  margin-bottom: 36px; padding-bottom: 24px; border-bottom: 1px solid var(--border);
+}
+
+.day-num {
+  font-family: 'Cormorant', serif; font-size: 100px;
+  font-weight: 300; color: rgba(201,168,76,0.1); line-height: 1;
+}
+
+.day-info h3 {
+  font-family: 'Cormorant', serif; font-size: 36px;
+  font-weight: 300; color: var(--cream); line-height: 1; margin-bottom: 6px;
+}
+
+.day-info p { font-size: 9px; letter-spacing: 4px; color: var(--gold); text-transform: uppercase; }
+
+.timeline { padding-left: 32px; position: relative; }
+
+.timeline::before {
+  content: ''; position: absolute; left: 8px; top: 0; bottom: 0;
+  width: 1px; background: linear-gradient(180deg, var(--gold), rgba(201,168,76,0.05));
+}
+
+.t-item {
+  position: relative; margin-bottom: 24px; padding: 20px 24px;
+  background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.04);
+  transition: border-color 0.3s;
+}
+
+.t-item:hover { border-color: rgba(201,168,76,0.2); }
+
+.t-item::before {
+  content: ''; position: absolute; left: -28px; top: 24px;
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--gold); border: 2px solid var(--deep);
+}
+
+.t-time { font-size: 8px; letter-spacing: 3px; color: var(--gold); text-transform: uppercase; margin-bottom: 6px; }
+.t-title { font-family: 'Cormorant', serif; font-size: 22px; color: var(--cream); margin-bottom: 6px; }
+.t-desc { font-size: 13px; color: var(--muted); line-height: 1.7; }
+
+/* ============================================
+   SUPERLATIVES
+   ============================================ */
+.superlatives-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2px; margin-top: 48px;
+}
+
+.superlative-card {
+  background: var(--black); border: 1px solid var(--border);
+  padding: 28px; position: relative; overflow: hidden; transition: all 0.3s;
+}
+
+.superlative-card:hover { border-color: rgba(201,168,76,0.35); background: rgba(201,168,76,0.03); }
+
+.sup-award { font-size: 28px; margin-bottom: 12px; display: block; }
+.sup-title { font-size: 8px; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; }
+.sup-name { font-family: 'Cormorant', serif; font-size: 22px; color: var(--cream); margin-bottom: 6px; line-height: 1.2; }
+.sup-desc { font-size: 12px; color: var(--muted); line-height: 1.6; }
+.sup-winner {
+  display: inline-block; margin-top: 12px;
+  font-size: 9px; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--silver); border: 1px solid rgba(192,192,192,0.3); padding: 3px 10px;
+}
+
+/* ============================================
+   DEPOSIT SECTION
+   ============================================ */
+.deposit-section {
+  background: var(--crimson); padding: 100px 48px;
+  text-align: center; position: relative; overflow: hidden;
+}
+
+.deposit-section::before {
+  content: '$75'; position: absolute;
+  font-family: 'Cormorant', serif; font-size: 400px; font-weight: 700;
+  color: rgba(255,255,255,0.04); top: 50%; left: 50%;
+  transform: translate(-50%,-50%); white-space: nowrap; pointer-events: none; line-height: 1;
+}
+
+.deposit-eyebrow {
+  font-size: 9px; letter-spacing: 6px; text-transform: uppercase;
+  color: rgba(255,255,255,0.6); margin-bottom: 20px; position: relative;
+}
+
+.deposit-title {
+  font-family: 'Cormorant', serif; font-size: clamp(40px, 7vw, 90px);
+  font-weight: 300; color: white; line-height: 1; margin-bottom: 16px; position: relative;
+}
+
+.deposit-title em { font-style: italic; color: var(--silver-light); }
+
+.deposit-desc {
+  font-size: 14px; color: rgba(255,255,255,0.7);
+  max-width: 500px; margin: 0 auto 48px; line-height: 1.8; position: relative;
+}
+
+.deposit-amount {
+  font-family: 'Cormorant', serif; font-size: 100px;
+  font-weight: 300; color: var(--silver-light); line-height: 1; margin-bottom: 8px; position: relative;
+}
+
+.deposit-amount-label {
+  font-size: 10px; letter-spacing: 4px; text-transform: uppercase;
+  color: rgba(255,255,255,0.5); margin-bottom: 48px; position: relative;
+}
+
+.deposit-methods {
+  display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;
+  position: relative; margin-bottom: 32px;
+}
+
+.deposit-btn {
+  background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);
+  color: white; font-family: 'Jost', sans-serif; font-size: 11px;
+  letter-spacing: 3px; text-transform: uppercase; padding: 16px 32px;
+  cursor: pointer; transition: all 0.3s; display: flex; align-items: center; gap: 10px;
+}
+
+.deposit-btn:hover { background: rgba(255,255,255,0.2); }
+
+.deposit-btn.primary {
+  background: var(--silver-light); border-color: var(--silver-light); color: var(--crimson-dark); font-weight: 600;
+}
+
+.deposit-btn.primary:hover { background: white; }
+.deposit-note { font-size: 11px; color: rgba(255,255,255,0.4); position: relative; letter-spacing: 1px; }
+
+/* ============================================
+   MEDIA UPLOAD
+   ============================================ */
+.upload-section {
+  background: var(--black); border: 1px solid var(--border);
+  padding: 60px; margin-top: 48px; text-align: center;
+}
+
+.upload-area {
+  border: 2px dashed rgba(201,168,76,0.3); padding: 60px 40px;
+  margin: 32px 0; transition: all 0.3s; cursor: pointer;
+}
+
+.upload-area:hover { border-color: rgba(201,168,76,0.6); background: rgba(201,168,76,0.03); }
+.upload-area.dragover { border-color: var(--gold); background: rgba(201,168,76,0.06); }
+
+.upload-icon { font-size: 48px; margin-bottom: 16px; display: block; }
+
+.upload-title {
+  font-family: 'Cormorant', serif; font-size: 28px;
+  color: var(--cream); margin-bottom: 8px;
+}
+
+.upload-desc { font-size: 13px; color: var(--muted); margin-bottom: 24px; }
+
+.upload-btn {
+  background: var(--gold); color: var(--deep); border: none;
+  font-family: 'Jost', sans-serif; font-size: 10px; letter-spacing: 3px;
+  text-transform: uppercase; padding: 14px 32px; cursor: pointer; font-weight: 500; transition: background 0.3s;
+}
+
+.upload-btn:hover { background: var(--gold-light); }
+
+#fileInput { display: none; }
+
+.media-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 8px; margin-top: 24px;
+}
+
+.media-item {
+  aspect-ratio: 1; position: relative; overflow: hidden;
+  background: rgba(255,255,255,0.03); border: 1px solid var(--border);
+}
+
+.media-item img, .media-item video { width: 100%; height: 100%; object-fit: cover; }
+
+.media-item-remove {
+  position: absolute; top: 6px; right: 6px;
+  background: rgba(139,0,0,0.8); color: white; border: none;
+  width: 22px; height: 22px; border-radius: 50%; font-size: 12px; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; transition: opacity 0.2s;
+}
+
+.media-item:hover .media-item-remove { opacity: 1; }
+.upload-count { font-size: 11px; color: var(--muted); margin-top: 12px; letter-spacing: 2px; text-transform: uppercase; }
+
+/* ============================================
+   SCRIPTURE + FOOTER
+   ============================================ */
+.scripture {
+  text-align: center; padding: 80px 48px;
+  border-top: 1px solid var(--border); position: relative; overflow: hidden;
+}
+
+.scripture::before {
+  content: '"'; position: absolute;
+  font-family: 'Cormorant', serif; font-size: 500px;
+  color: rgba(201,168,76,0.03); top: -100px; left: 50%; transform: translateX(-50%);
+  line-height: 1; pointer-events: none;
+}
+
+.scripture-text {
+  font-family: 'Cormorant', serif; font-size: clamp(20px, 3vw, 36px);
+  font-style: italic; font-weight: 300; color: var(--cream);
+  max-width: 700px; margin: 0 auto 16px; line-height: 1.5; position: relative;
+}
+
+.scripture-ref {
+  font-size: 9px; letter-spacing: 5px; text-transform: uppercase; color: var(--silver);
+}
+
+footer {
+  background: #050505; padding: 60px 48px;
+  text-align: center; border-top: 1px solid var(--border);
+}
+
+.footer-logo {
+  font-family: 'Cormorant', serif; font-size: 32px;
+  font-weight: 300; font-style: italic; color: var(--gold); margin-bottom: 12px;
+}
+
+.footer-sub {
+  font-size: 9px; letter-spacing: 5px; text-transform: uppercase;
+  color: var(--muted); margin-bottom: 32px;
+}
+
+.footer-links {
+  display: flex; gap: 32px; justify-content: center;
+  flex-wrap: wrap; list-style: none; margin-bottom: 32px;
+}
+
+.footer-links a {
+  font-size: 9px; letter-spacing: 3px; text-transform: uppercase;
+  color: var(--muted); text-decoration: none; transition: color 0.3s; cursor: pointer;
+}
+
+.footer-links a:hover { color: var(--gold); }
+.footer-copy { font-size: 11px; color: rgba(201,168,76,0.3); letter-spacing: 1px; }
+
+.divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--crimson), var(--silver), var(--crimson), transparent);
+}
+
+/* ============================================
+   DEPOSIT MODAL (website)
+   ============================================ */
+.modal-overlay {
+  position: fixed; inset: 0; background: rgba(0,0,0,0.85);
+  z-index: 200; display: none; align-items: center; justify-content: center;
+  padding: 24px; backdrop-filter: blur(8px);
+}
+
+.modal-overlay.open { display: flex; }
+
+.modal {
+  background: var(--deep); border: 1px solid var(--border);
+  padding: 48px; max-width: 500px; width: 100%; position: relative; text-align: center;
+}
+
+.modal-close {
+  position: absolute; top: 16px; right: 20px;
+  background: none; border: none; color: var(--muted); font-size: 20px; cursor: pointer;
+}
+
+.modal-close:hover { color: var(--gold); }
+
+.modal-title {
+  font-family: 'Cormorant', serif; font-size: 36px;
+  color: var(--cream); margin-bottom: 8px;
+}
+
+.modal-desc {
+  font-size: 13px; color: var(--muted); margin-bottom: 32px; line-height: 1.7;
+}
+
+.modal-amount {
+  font-family: 'Cormorant', serif; font-size: 72px;
+  color: var(--gold); line-height: 1; margin-bottom: 32px;
+}
+
+.modal-methods { display: flex; flex-direction: column; gap: 10px; }
+
+.modal-method {
+  background: rgba(255,255,255,0.03); border: 1px solid var(--border);
+  padding: 16px 20px; display: flex; align-items: center;
+  justify-content: space-between; transition: all 0.2s;
+}
+
+.modal-method:hover { border-color: rgba(201,168,76,0.3); background: rgba(201,168,76,0.04); }
+.modal-method-name { font-size: 13px; color: var(--cream); font-weight: 500; }
+.modal-method-handle { font-size: 11px; color: var(--gold); letter-spacing: 1px; }
+
+.modal-note {
+  font-size: 11px; color: var(--muted); margin-top: 20px; line-height: 1.6;
+  border-top: 1px solid var(--border); padding-top: 20px;
+}
+
+/* ============================================
+   PORTAL STYLES
+   ============================================ */
+.portal-view {
+  background: #0A0202;
+  min-height: 100vh;
+}
+
+/* Portal login */
+#pLoginScreen {
+  align-items: center; justify-content: center;
+  padding: 24px; position: relative; overflow: hidden;
+  background: #0A0202;
+}
+
+.p-login-bg {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse at 20% 50%, rgba(139,0,0,0.2) 0%, transparent 55%),
+    radial-gradient(ellipse at 80% 30%, rgba(192,192,192,0.05) 0%, transparent 50%);
+}
+
+.p-login-grid {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(192,192,192,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(192,192,192,0.04) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+.p-back-btn {
+  position: absolute; top: 24px; left: 24px;
+  background: rgba(255,255,255,0.05); border: 1px solid rgba(201,168,76,0.2);
+  color: rgba(242,235,224,0.6); font-family: 'Cinzel', serif;
+  font-size: 9px; letter-spacing: 3px; text-transform: uppercase;
+  padding: 10px 16px; cursor: pointer; transition: all 0.2s; z-index: 10;
+}
+
+.p-back-btn:hover { border-color: var(--gold); color: var(--gold-light); }
+
+.login-box {
+  background: var(--card); border: 1px solid var(--p-border);
+  padding: 56px 48px; width: 100%; max-width: 440px; position: relative; z-index: 2;
+}
+
+.login-box::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, var(--crimson), var(--silver), var(--crimson));
+}
+
+.login-logo {
+  font-family: 'Cinzel', serif; font-size: 11px; letter-spacing: 5px;
+  text-transform: uppercase; color: var(--gold-light); margin-bottom: 8px; text-align: center;
+}
+
+.login-title {
+  font-family: 'Cormorant Garamond', serif; font-size: 40px; font-weight: 300;
+  text-align: center; color: #F2EBE0; line-height: 1.1; margin-bottom: 6px;
+}
+
+.login-title em { font-style: italic; color: var(--gold-light); }
+
+.login-sub {
+  font-size: 12px; color: rgba(242,235,224,0.45);
+  text-align: center; margin-bottom: 40px; letter-spacing: 1px;
+}
+
+.p-form-group { margin-bottom: 16px; }
+
+.p-form-label {
+  font-family: 'Cinzel', serif; font-size: 8px; letter-spacing: 4px;
+  text-transform: uppercase; color: var(--gold-light); display: block; margin-bottom: 8px;
+}
+
+.p-form-input {
+  width: 100%; background: rgba(255,255,255,0.04); border: 1px solid var(--p-border);
+  color: #F2EBE0; font-family: 'Jost', sans-serif; font-size: 14px;
+  font-weight: 300; padding: 14px 16px; outline: none; transition: border-color 0.3s;
+}
+
+.p-form-input:focus { border-color: var(--gold-light); }
+.p-form-input::placeholder { color: rgba(242,235,224,0.25); }
+
+.p-form-select {
+  width: 100%; background: rgba(255,255,255,0.04); border: 1px solid var(--p-border);
+  color: #F2EBE0; font-family: 'Jost', sans-serif; font-size: 14px;
+  font-weight: 300; padding: 14px 16px; outline: none; transition: border-color 0.3s;
+  cursor: pointer; appearance: none;
+}
+
+.p-form-select:focus { border-color: var(--gold-light); }
+.p-form-select option { background: #0E1510; color: #F2EBE0; }
+
+.p-login-btn {
+  width: 100%; background: var(--teal); border: none; color: #F2EBE0;
+  font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 4px;
+  text-transform: uppercase; padding: 16px; cursor: pointer; margin-top: 24px; transition: background 0.3s;
+}
+
+.p-login-btn:hover { background: var(--teal-light); }
+
+.p-login-error { color: var(--red); font-size: 12px; text-align: center; margin-top: 12px; display: none; }
+
+.p-admin-toggle {
+  text-align: center; margin-top: 20px; font-size: 11px;
+  color: rgba(242,235,224,0.45); cursor: pointer; letter-spacing: 1px; transition: color 0.2s;
+}
+
+.p-admin-toggle:hover { color: var(--gold-light); }
+
+/* Portal nav */
+.portal-nav {
+  background: #160505; border-bottom: 1px solid var(--p-border);
+  padding: 0 32px; display: flex; align-items: center;
+  justify-content: space-between; height: 60px; position: sticky; top: 0; z-index: 50;
+}
+
+.p-nav-brand { font-family: 'Cinzel', serif; font-size: 12px; letter-spacing: 4px; color: var(--gold-light); text-transform: uppercase; }
+
+.p-nav-right { display: flex; align-items: center; gap: 20px; }
+
+.p-nav-user { font-size: 12px; color: rgba(242,235,224,0.45); letter-spacing: 1px; }
+.p-nav-user span { color: var(--gold-light); }
+
+.p-logout-btn {
+  background: none; border: 1px solid rgba(242,235,224,0.15); color: rgba(242,235,224,0.45);
+  font-family: 'Jost', sans-serif; font-size: 10px; letter-spacing: 2px;
+  text-transform: uppercase; padding: 6px 14px; cursor: pointer; transition: all 0.2s;
+}
+
+.p-logout-btn:hover { border-color: var(--gold-light); color: var(--gold-light); }
+
+.p-back-site-btn {
+  background: rgba(13,92,70,0.2); border: 1px solid rgba(13,92,70,0.4); color: rgba(242,235,224,0.6);
+  font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 2px;
+  text-transform: uppercase; padding: 6px 14px; cursor: pointer; transition: all 0.2s;
+}
+
+.p-back-site-btn:hover { border-color: var(--teal-light); color: var(--cream); }
+
+/* Portal dashboard */
+.dashboard-body {
+  flex: 1; padding: 40px 32px; max-width: 900px; margin: 0 auto; width: 100%;
+}
+
+.dash-header { margin-bottom: 32px; }
+
+.dash-greeting {
+  font-family: 'Cormorant Garamond', serif; font-size: clamp(28px, 4vw, 48px);
+  font-weight: 300; color: #F2EBE0; line-height: 1.1; margin-bottom: 6px;
+}
+
+.dash-greeting em { font-style: italic; color: var(--gold-light); }
+.dash-sub { font-size: 12px; color: rgba(242,235,224,0.45); letter-spacing: 1px; }
+
+.balance-strip { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-bottom: 32px; }
+
+.bal-card { background: var(--card); border: 1px solid var(--p-border); padding: 24px 20px; text-align: center; }
+/* SILVER ANNIVERSARY BANNER */
+.silver-banner {
+  background: linear-gradient(135deg, var(--crimson-dark), var(--crimson), var(--crimson-dark));
+  padding: 10px 48px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  margin-top: 61px;
+}
+
+.silver-banner::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    90deg,
+    transparent,
+    transparent 40px,
+    rgba(192,192,192,0.06) 40px,
+    rgba(192,192,192,0.06) 41px
+  );
+}
+
+.silver-banner-text {
+  font-family: 'Cinzel', serif;
+  font-size: 10px;
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  color: var(--silver-light);
+  position: relative;
+}
+
+.silver-banner-text span {
+  color: white;
+  margin: 0 12px;
+}
+
+.bal-card.primary { background: var(--crimson); border-color: var(--crimson-light); }
+
+.bal-label {
+  font-family: 'Cinzel', serif; font-size: 8px; letter-spacing: 3px;
+  text-transform: uppercase; color: rgba(201,168,76,0.7); margin-bottom: 8px;
+}
+
+.bal-amount {
+  font-family: 'Cormorant Garamond', serif; font-size: clamp(28px, 4vw, 44px);
+  font-weight: 300; color: var(--gold-light); line-height: 1; margin-bottom: 4px;
+}
+
+.bal-desc { font-size: 10px; color: rgba(242,235,224,0.4); letter-spacing: 1px; }
+
+.p-section-title {
+  font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 5px;
+  text-transform: uppercase; color: var(--gold-light); margin-bottom: 16px;
+  display: flex; align-items: center; gap: 12px;
+}
+
+.p-section-title::after { content: ''; flex: 1; height: 1px; background: var(--p-border); }
+
+.installments-list { display: flex; flex-direction: column; gap: 8px; margin-bottom: 32px; }
+
+.install-row {
+  background: var(--card); border: 1px solid var(--p-border);
+  display: grid; grid-template-columns: auto 1fr auto auto;
+  align-items: center; gap: 20px; padding: 18px 20px; transition: border-color 0.3s;
+}
+
+.install-row:hover { border-color: rgba(13,92,70,0.5); }
+
+.install-status { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+.i-paid { background: var(--green); box-shadow: 0 0 8px rgba(76,175,112,0.4); }
+.i-due { background: var(--amber); box-shadow: 0 0 8px rgba(245,158,11,0.4); }
+.i-upcoming { background: rgba(242,235,224,0.15); }
+
+.install-name {
+  font-family: 'Cormorant Garamond', serif; font-size: 18px;
+  color: #F2EBE0; margin-bottom: 3px;
+}
+
+.install-date { font-size: 11px; color: rgba(242,235,224,0.45); letter-spacing: 1px; }
+
+.install-amount {
+  font-family: 'Cormorant Garamond', serif; font-size: 22px;
+  color: #F2EBE0; text-align: right;
+}
+
+.p-pay-btn {
+  background: var(--teal); border: none; color: #F2EBE0;
+  font-family: 'Cinzel', serif; font-size: 8px; letter-spacing: 3px;
+  text-transform: uppercase; padding: 10px 18px; cursor: pointer;
+  transition: background 0.3s; white-space: nowrap;
+}
+
+.p-pay-btn:hover { background: var(--teal-light); }
+
+.p-paid-badge {
+  font-family: 'Cinzel', serif; font-size: 8px; letter-spacing: 2px;
+  text-transform: uppercase; color: var(--green); border: 1px solid rgba(76,175,112,0.3); padding: 8px 14px;
+}
+
+.p-upcoming-badge { font-size: 10px; color: rgba(242,235,224,0.45); letter-spacing: 1px; }
+
+/* Payment modal (portal) */
+.p-modal-overlay {
+  position: fixed; inset: 0; background: rgba(0,0,0,0.85);
+  z-index: 300; display: none; align-items: center; justify-content: center;
+  padding: 24px; backdrop-filter: blur(8px);
+}
+
+.p-modal-overlay.open { display: flex; }
+
+.p-modal {
+  background: var(--card); border: 1px solid var(--p-border);
+  padding: 48px; max-width: 480px; width: 100%; position: relative;
+}
+
+.p-modal::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, var(--crimson), var(--silver-light));
+}
+
+.p-modal-close {
+  position: absolute; top: 16px; right: 20px; background: none; border: none;
+  color: rgba(242,235,224,0.45); font-size: 18px; cursor: pointer; transition: color 0.2s;
+}
+
+.p-modal-close:hover { color: var(--gold-light); }
+
+.p-modal-eyebrow {
+  font-family: 'Cinzel', serif; font-size: 8px; letter-spacing: 5px;
+  text-transform: uppercase; color: var(--gold-light); margin-bottom: 10px;
+}
+
+.p-modal-title {
+  font-family: 'Cormorant Garamond', serif; font-size: 32px;
+  color: #F2EBE0; margin-bottom: 24px; line-height: 1.1;
+}
+
+.p-modal-amount-display {
+  background: var(--teal); padding: 20px; text-align: center; margin-bottom: 24px;
+}
+
+.p-modal-amount-label {
+  font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
+  color: rgba(242,235,224,0.6); margin-bottom: 6px;
+}
+
+.p-modal-amount-num {
+  font-family: 'Cormorant Garamond', serif; font-size: 56px; color: var(--gold-light); line-height: 1;
+}
+
+.p-payment-methods { display: flex; flex-direction: column; gap: 10px; margin-bottom: 24px; }
+
+.p-method-card {
+  background: rgba(255,255,255,0.03); border: 1px solid var(--p-border);
+  padding: 16px 20px; display: flex; align-items: center;
+  justify-content: space-between; cursor: pointer; transition: all 0.2s;
+}
+
+.p-method-card:hover { border-color: rgba(13,92,70,0.6); background: rgba(13,92,70,0.08); }
+.p-method-card.selected { border-color: var(--gold-light); background: rgba(201,168,76,0.06); }
+
+.p-method-left { display: flex; align-items: center; gap: 12px; }
+.p-method-icon { font-size: 22px; }
+.p-method-name { font-size: 14px; color: #F2EBE0; font-weight: 400; }
+.p-method-handle { font-size: 11px; color: var(--gold-light); letter-spacing: 1px; }
+
+.p-method-radio {
+  width: 16px; height: 16px; border-radius: 50%;
+  border: 2px solid var(--p-border); transition: all 0.2s; flex-shrink: 0;
+}
+
+.p-method-card.selected .p-method-radio { border-color: var(--gold-light); background: var(--gold-light); }
+
+.p-confirm-btn {
+  width: 100%; background: var(--gold-light); border: none; color: #070A08;
+  font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 4px;
+  text-transform: uppercase; padding: 16px; cursor: pointer; font-weight: 600; transition: background 0.3s;
+}
+
+.p-confirm-btn:hover { background: #F0D47A; }
+
+.p-modal-note {
+  font-size: 11px; color: rgba(242,235,224,0.45); margin-top: 16px;
+  text-align: center; line-height: 1.6; border-top: 1px solid var(--p-border); padding-top: 16px;
+}
+
+/* Activity log */
+.activity-list { display: flex; flex-direction: column; gap: 6px; margin-bottom: 32px; }
+
+.activity-item {
+  background: var(--card); border: 1px solid var(--p-border);
+  padding: 14px 18px; display: flex; align-items: center; gap: 14px;
+}
+
+.activity-icon { font-size: 16px; flex-shrink: 0; }
+.activity-text { font-size: 13px; color: rgba(242,235,224,0.45); flex: 1; line-height: 1.4; }
+.activity-text strong { color: #F2EBE0; }
+.activity-time { font-size: 10px; color: rgba(242,235,224,0.25); letter-spacing: 1px; white-space: nowrap; }
+
+/* Admin dashboard */
+.admin-body { flex: 1; padding: 40px 32px; max-width: 1200px; margin: 0 auto; width: 100%; }
+
+.admin-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; margin-bottom: 32px; }
+
+.a-stat-card { background: var(--card); border: 1px solid var(--p-border); padding: 20px; }
+.a-stat-card.highlight { background: var(--crimson); border-color: var(--crimson-light); }
+
+.a-stat-label {
+  font-family: 'Cinzel', serif; font-size: 8px; letter-spacing: 3px;
+  text-transform: uppercase; color: rgba(201,168,76,0.7); margin-bottom: 8px;
+}
+
+.a-stat-value {
+  font-family: 'Cormorant Garamond', serif; font-size: 36px;
+  color: var(--gold-light); line-height: 1; margin-bottom: 4px;
+}
+
+.a-stat-sub { font-size: 11px; color: rgba(242,235,224,0.35); letter-spacing: 1px; }
+
+.table-wrap { background: var(--card); border: 1px solid var(--p-border); overflow: hidden; margin-bottom: 32px; }
+
+.table-header-row {
+  display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1fr 120px;
+  background: rgba(13,92,70,0.15); border-bottom: 1px solid var(--p-border);
+}
+
+.th {
+  padding: 12px 16px; font-family: 'Cinzel', serif; font-size: 8px;
+  letter-spacing: 3px; text-transform: uppercase; color: var(--gold-light);
+}
+
+.th:not(:first-child) { border-left: 1px solid var(--p-border); text-align: right; }
+
+.table-body { max-height: 500px; overflow-y: auto; }
+
+.table-row {
+  display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1fr 120px;
+  border-bottom: 1px solid rgba(13,92,70,0.15); transition: background 0.2s;
+}
+
+.table-row:last-child { border-bottom: none; }
+.table-row:hover { background: rgba(13,92,70,0.06); }
+
+.td { padding: 14px 16px; font-size: 13px; color: rgba(242,235,224,0.45); display: flex; align-items: center; }
+
+.td:not(:first-child) { justify-content: flex-end; border-left: 1px solid rgba(13,92,70,0.1); }
+
+.td.name { flex-direction: column; align-items: flex-start; gap: 2px; }
+
+.soror-name { font-family: 'Cormorant Garamond', serif; font-size: 17px; color: #F2EBE0; font-weight: 400; }
+.soror-email { font-size: 10px; color: rgba(242,235,224,0.3); letter-spacing: 0.5px; }
+
+.a-paid { color: var(--green) !important; font-family: 'Cormorant Garamond', serif; font-size: 15px; }
+.a-due { color: var(--amber) !important; font-family: 'Cormorant Garamond', serif; font-size: 15px; }
+
+.progress-cell { flex-direction: column; align-items: flex-end !important; gap: 4px; }
+
+.mini-progress { width: 80px; height: 4px; background: rgba(255,255,255,0.08); }
+.mini-fill { height: 100%; background: linear-gradient(90deg, var(--crimson), var(--silver-light)); transition: width 0.5s ease; }
+.progress-pct { font-size: 10px; color: var(--gold-light); letter-spacing: 1px; }
+
+.a-action-btn {
+  background: none; border: 1px solid rgba(13,92,70,0.4); color: var(--teal-light);
+  font-family: 'Cinzel', serif; font-size: 7px; letter-spacing: 2px;
+  text-transform: uppercase; padding: 6px 10px; cursor: pointer; transition: all 0.2s;
+}
+
+.a-action-btn:hover { border-color: var(--gold-light); color: var(--gold-light); }
+
+.admin-controls { display: flex; gap: 12px; margin-bottom: 16px; flex-wrap: wrap; }
+
+.a-search-input {
+  flex: 1; min-width: 200px; background: var(--card); border: 1px solid var(--p-border);
+  color: #F2EBE0; font-family: 'Jost', sans-serif; font-size: 13px;
+  padding: 10px 16px; outline: none; transition: border-color 0.3s;
+}
+
+.a-search-input:focus { border-color: var(--gold-light); }
+.a-search-input::placeholder { color: rgba(242,235,224,0.45); }
+
+.a-filter-btn {
+  background: var(--card); border: 1px solid var(--p-border); color: rgba(242,235,224,0.45);
+  font-family: 'Cinzel', serif; font-size: 8px; letter-spacing: 2px;
+  text-transform: uppercase; padding: 10px 16px; cursor: pointer; transition: all 0.2s;
+}
+
+.a-filter-btn:hover, .a-filter-btn.active { border-color: var(--gold-light); color: var(--gold-light); }
+
+.a-add-btn {
+  background: var(--teal); border: none; color: #F2EBE0;
+  font-family: 'Cinzel', serif; font-size: 8px; letter-spacing: 3px;
+  text-transform: uppercase; padding: 10px 20px; cursor: pointer; transition: background 0.2s;
+}
+
+.a-add-btn:hover { background: var(--teal-light); }
+
+.mark-paid-btn {
+  background: rgba(76,175,112,0.15); border: 1px solid rgba(76,175,112,0.3);
+  color: var(--green); font-family: 'Cinzel', serif; font-size: 7px;
+  letter-spacing: 2px; text-transform: uppercase; padding: 6px 10px;
+  cursor: pointer; transition: all 0.2s; margin-left: 4px;
+}
+
+.mark-paid-btn:hover { background: rgba(76,175,112,0.25); }
+
+/* Add soror modal */
+.p-add-modal {
+  background: var(--card); border: 1px solid var(--p-border);
+  padding: 40px; max-width: 500px; width: 100%; position: relative;
+}
+
+.p-add-modal::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, var(--crimson), var(--silver-light));
+}
+
+/* Toast */
+.p-toast {
+  position: fixed; bottom: 32px; right: 32px; background: var(--teal);
+  border: 1px solid var(--teal-light); padding: 16px 24px;
+  display: flex; align-items: center; gap: 12px; z-index: 400;
+  transform: translateY(100px); opacity: 0; transition: all 0.4s ease; max-width: 360px;
+}
+
+.p-toast.show { transform: translateY(0); opacity: 1; }
+.p-toast-icon { font-size: 20px; }
+.p-toast-text { font-size: 13px; color: #F2EBE0; line-height: 1.5; }
+.p-toast-text strong { color: var(--gold-light); }
+
+/* Portal footer */
+.portal-footer {
+  background: var(--surface); border-top: 1px solid var(--p-border);
+  padding: 20px 32px; text-align: center;
+}
+
+.portal-footer p { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 13px; color: rgba(242,235,224,0.3); }
+.portal-footer span { font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: rgba(201,168,76,0.3); }
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 768px) {
+  nav { padding: 16px 24px; }
+  .nav-links { display: none; }
+  section { padding: 60px 24px; }
+  .dest-options { grid-template-columns: 1fr; }
+  .day-panel { padding: 28px; }
+  .upload-section { padding: 40px 24px; }
+  .deposit-section { padding: 60px 24px; }
+  .balance-strip { grid-template-columns: 1fr; }
+  .admin-stats { grid-template-columns: repeat(2, 1fr); }
+  .table-header-row, .table-row { grid-template-columns: 2fr 1fr 1fr 80px; }
+  .th:nth-child(3), .th:nth-child(4), .td:nth-child(3), .td:nth-child(4) { display: none; }
+  .dashboard-body, .admin-body { padding: 24px 16px; }
+  .portal-nav { padding: 0 16px; }
+  .login-box { padding: 40px 28px; }
+}
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+
+<!-- =============================================
+     SITE VIEW — Trip Website
+     ============================================= -->
+<div class="site-view active" id="siteView">
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo" onclick="scrollToTop()">The Reawakening</div>
+  <ul class="nav-links">
+    <li><a onclick="scrollTo('destination')">Destination</a></li>
+    <li><a onclick="scrollTo('accommodations')">Stay</a></li>
+    <li><a onclick="scrollTo('itinerary')">Itinerary</a></li>
+    <li><a onclick="scrollTo('superlatives')">Superlatives</a></li>
+    <li><a onclick="scrollTo('memories')">Memories</a></li>
+    <li><a class="nav-portal-btn" onclick="switchToPortal()">💳 My Payments</a></li>
+    <li><a class="nav-cta" onclick="openModal()">Pay Deposit</a></li>
+  </ul>
+</nav>
+
+<!-- SILVER ANNIVERSARY BANNER -->
+<div class="silver-banner">
+  <div class="silver-banner-text">
+    <span>✦</span> Spring 2002 <span>·</span> Silver Deltaversary <span>·</span> XXV <span>·</span> 2002–2027 <span>✦</span>
+  </div>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Delta Sigma Theta Sorority, Inc. · Spring 2002 · Silver Deltaversary</div>
+    <h1 class="hero-title">The<br><em>Reawakening</em></h1>
+    <p class="hero-subtitle">XXV · Silver · Twenty-Five Years of Sisterhood · 2002–2027</p>
+    <div class="hero-divider"></div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="hero-stat-num">25</div><div class="hero-stat-label">Years of Bond</div></div>
+      <div class="hero-stat"><div class="hero-stat-num">30</div><div class="hero-stat-label">Sorors</div></div>
+      <div class="hero-stat"><div class="hero-stat-num">5</div><div class="hero-stat-label">Nights Together</div></div>
+      <div class="hero-stat"><div class="hero-stat-num">'27</div><div class="hero-stat-label">Spring 2027</div></div>
+    </div>
+  </div>
+  <div class="scroll-hint">
+    <div class="scroll-line"></div>
+    <div class="scroll-text">Scroll</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- DESTINATION -->
+<section id="destination">
+  <div class="section-label">
+    <div class="section-label-line"></div>
+    <span>Where We're Going</span>
+    <div class="section-label-line right"></div>
+  </div>
+  <h2 class="section-title">The <em>Destination</em><br>Has Been Chosen.</h2>
+  <p class="section-desc">Twenty-five years of sisterhood deserves a backdrop worthy of the bond. The Reawakening lands on the Platinum Coast.</p>
+
+  <div class="dest-reveal">
+    <div class="dest-status">Confirmed · Barbados</div>
+    <div class="dest-title">Barbados,<br>West Indies</div>
+    <div class="dest-desc">The most refined island in the Caribbean. Elevated Black-owned hospitality, UNESCO Heritage capital of Bridgetown, breathtaking beaches, and a Bajan culture that will make every moment extraordinary.</div>
+    <div class="dest-options">
+      <div class="dest-option">
+        <div class="dest-option-flag">🇧🇧</div>
+        <div class="dest-option-name">Barbados</div>
+        <div class="dest-option-sub">Platinum Coast · West Indies</div>
+      </div>
+      <div class="dest-option">
+        <div class="dest-option-flag">📅</div>
+        <div class="dest-option-name">April 22–27, 2027</div>
+        <div class="dest-option-sub">5 Nights · 4 Days · Spring</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ACCOMMODATIONS -->
+<section id="accommodations">
+  <div class="section-label">
+    <div class="section-label-line"></div>
+    <span>Where We Stay</span>
+    <div class="section-label-line right"></div>
+  </div>
+  <h2 class="section-title">The <em>Stay</em> is<br>Non-Negotiable.</h2>
+  <p class="section-desc">We are not doing hotel hallways and separate lobbies. This is a full group experience — everyone together, every moment intentional.</p>
+
+  <div class="accom-grid">
+    <div class="accom-card">
+      <div class="accom-type">🇧🇧 Option A · Top Pick</div>
+      <div class="accom-name">The Great House</div>
+      <div class="accom-location">Mullins Bay · Barbados · West Indies</div>
+      <div class="accom-desc">12-bedroom beachfront mansion sleeping up to 30 on a private estate with hundreds of meters of beach frontage. Full staff included — 4 butlers, 3 chefs, 4 security. Infinity pool, speed boat, spa, tennis court, cinema. One property. Thirty women. Everything included.</div>
+      <div class="accom-features">
+        <span class="feature-tag">Sleeps 30</span>
+        <span class="feature-tag">Full Staff</span>
+        <span class="feature-tag">Beachfront</span>
+        <span class="feature-tag">Private Pool</span>
+      </div>
+    </div>
+    <div class="accom-card">
+      <div class="accom-type">🇧🇧 Option B · Boutique</div>
+      <div class="accom-name">Coral Reef Club</div>
+      <div class="accom-location">Holetown · St. James · Barbados</div>
+      <div class="accom-desc">Award-winning five-star boutique set in exotic gardens flowing to a perfect beach. Luxury cottages with private plunge pools nestled amongst lush tropical gardens. Family-owned and operated — the most flexible on group negotiations. This is the most intimate group experience in Barbados.</div>
+      <div class="accom-features">
+        <span class="feature-tag">Private Cottages</span>
+        <span class="feature-tag">Plunge Pools</span>
+        <span class="feature-tag">5-Star</span>
+        <span class="feature-tag">Group-Friendly</span>
+      </div>
+    </div>
+    <div class="accom-card">
+      <div class="accom-type">🇧🇧 Option C · All-Inclusive</div>
+      <div class="accom-name">The House · Platinum Coast</div>
+      <div class="accom-location">St. James · Barbados · Platinum Coast</div>
+      <div class="accom-desc">39-suite adults-only all-inclusive boutique resort on the world-renowned Platinum Coast. Service ambassadors provide personalized attention. All-inclusive means food and drinks are covered — dramatically simplifying the group budget. Near-buyout possible for a group of 30.</div>
+      <div class="accom-features">
+        <span class="feature-tag">All-Inclusive</span>
+        <span class="feature-tag">Adults Only</span>
+        <span class="feature-tag">Near Buyout</span>
+        <span class="feature-tag">Platinum Coast</span>
+      </div>
+    </div>
+    <div class="accom-card">
+      <div class="accom-type">🇧🇧 Option D · Luxury Boutique</div>
+      <div class="accom-name">The Sandpiper</div>
+      <div class="accom-location">Holetown · St. James · Barbados</div>
+      <div class="accom-desc">Award-winning five-star luxury boutique on a beautiful sandy beach on the West Coast. Two-bedroom suites sleeping up to five persons with separate living room, kitchen, and large patio. Discreetly one of the most awarded hotels in Barbados. Managed with meticulous attention to detail.</div>
+      <div class="accom-features">
+        <span class="feature-tag">2-Bedroom Suites</span>
+        <span class="feature-tag">Beachfront</span>
+        <span class="feature-tag">Most Awarded</span>
+        <span class="feature-tag">West Coast</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ITINERARY -->
+<section id="itinerary">
+  <div class="section-label">
+    <div class="section-label-line"></div>
+    <span>April 22–27, 2027</span>
+    <div class="section-label-line right"></div>
+  </div>
+  <h2 class="section-title">Five Days.<br><em>Every Moment</em> Planned.</h2>
+  <p class="section-desc">Nothing is left to chance. Every meal, every experience, every moment of silence is intentional. This is what 25 years of sisterhood deserves.</p>
+
+  <div class="itinerary-wrap">
+    <div class="day-selector">
+      <button class="day-btn active" onclick="showDay('d1', this)">Wednesday · Arrival</button>
+      <button class="day-btn" onclick="showDay('d2', this)">Thursday · Welcome</button>
+      <button class="day-btn" onclick="showDay('d3', this)">Friday · Culture</button>
+      <button class="day-btn" onclick="showDay('d4', this)">Saturday · The Day</button>
+      <button class="day-btn" onclick="showDay('d5', this)">Sunday · Send-Off</button>
+    </div>
+
+    <div id="d1" class="day-panel active">
+      <div class="day-header">
+        <div class="day-num">01</div>
+        <div class="day-info"><h3>Early Arrival</h3><p>Wednesday · April 22nd · Settle In</p></div>
+      </div>
+      <div class="timeline">
+        <div class="t-item">
+          <div class="t-time">Afternoon · 2–8 PM</div>
+          <div class="t-title">Staggered Arrivals + Welcome Bags</div>
+          <div class="t-desc">Group transfers pre-booked from BGI airport. Welcome bag in every room — custom tote, line year ribbon, Bajan local snack, handwritten note. This is the first moment of magic. Early arrivals get first pick of rooms and first glimpse of the island.</div>
+        </div>
+        <div class="t-item">
+          <div class="t-time">Evening · 7:30 PM</div>
+          <div class="t-title">Casual Welcome Dinner</div>
+          <div class="t-desc">Informal gathering for early arrivals. Local Bajan food — acarajé, flying fish, rice and peas. No program, no schedule. Just the first exhale of being here. Tomorrow the real celebration begins.</div>
+        </div>
+      </div>
+    </div>
+
+    <div id="d2" class="day-panel">
+      <div class="day-header">
+        <div class="day-num">02</div>
+        <div class="day-info"><h3>Arrival & The Welcome</h3><p>Thursday · April 23rd · The Reunion</p></div>
+      </div>
+      <div class="timeline">
+        <div class="t-item">
+          <div class="t-time">Morning · 10 AM</div>
+          <div class="t-title">Full Group Brunch + Devotional</div>
+          <div class="t-desc">First time the full line is in the same room. One soror opens with scripture. One soror prays. No phones for 20 minutes. Set the spiritual tone for everything that follows.</div>
+        </div>
+        <div class="t-item">
+          <div class="t-time">Afternoon · 2–6 PM</div>
+          <div class="t-title">Free Time · Beach, Pool, Explore</div>
+          <div class="t-desc">Unscheduled time is where real bonding happens. Hallway conversations, beach walks, poolside reconnection. Let it breathe.</div>
+        </div>
+        <div class="t-item">
+          <div class="t-time">Evening · 7:30 PM</div>
+          <div class="t-title">The Reunion Dinner — Private Dining</div>
+          <div class="t-desc">Private dining room. Long table. Family style. Low lighting. Soft music. No phones for the first 30 minutes. This is the exhale. Twenty-five years of women who love each other, finally in the same room again.</div>
+        </div>
+      </div>
+    </div>
+
+    <div id="d3" class="day-panel">
+      <div class="day-header">
+        <div class="day-num">03</div>
+        <div class="day-info"><h3>Culture & The Crimson Affair</h3><p>Friday · April 24th · Go Deep</p></div>
+      </div>
+      <div class="timeline">
+        <div class="t-item">
+          <div class="t-time">Morning · 9 AM</div>
+          <div class="t-title">Bridgetown Heritage Tour</div>
+          <div class="t-desc">UNESCO World Heritage capital. Black-owned tour operator. Half-day walking tour through colonial Bridgetown, St. James Parish Church, and local rum shops. This is the cultural experience that becomes the story.</div>
+        </div>
+        <div class="t-item">
+          <div class="t-time">Afternoon · 3–7 PM</div>
+          <div class="t-title">Mandatory Rest + Spa</div>
+          <div class="t-desc">Built in. Non-negotiable. Spa treatments, pool, nap, journaling. The sorors who skip rest are the ones who fade at the Crimson Affair. Rest is an act of self-love.</div>
+        </div>
+        <div class="t-item">
+          <div class="t-time">Evening · 7:30 PM</div>
+          <div class="t-title">The Crimson Affair — Tribute Dinner</div>
+          <div class="t-desc">Everyone dressed — crimson and gold encouraged. Plated dinner. Structured program. Each soror gets 90 seconds on what 25 years of this line has meant. Tissues provided. This is the soul of the entire trip.</div>
+        </div>
+      </div>
+    </div>
+
+    <div id="d4" class="day-panel">
+      <div class="day-header">
+        <div class="day-num">04</div>
+        <div class="day-info"><h3>The Photo, The Sea & The Party</h3><p>Saturday · April 25th · The Day They'll Never Forget</p></div>
+      </div>
+      <div class="timeline">
+        <div class="t-item">
+          <div class="t-time">Dawn · 6:30–9 AM</div>
+          <div class="t-title">The Iconic Group Photo — Bathsheba</div>
+          <div class="t-desc">Golden hour at Bathsheba Rock Formation on the wild Atlantic east coast. Professional photographer. All ivory wardrobe. The dramatic boulders and ocean spray against 30 women in crimson and cream. This photograph lives for the next 25 years. Treat it like the production it is.</div>
+        </div>
+        <div class="t-item">
+          <div class="t-time">Midday · 11 AM–4 PM</div>
+          <div class="t-title">Private Catamaran Charter</div>
+          <div class="t-desc">Full group on the Caribbean Sea. Snorkeling, swimming with turtles, lunch on deck, and the island viewed from the water. Book directly with Cool Runnings or Tiami. This is the activity that nobody forgets.</div>
+        </div>
+        <div class="t-item">
+          <div class="t-time">Evening · 8 PM–Close</div>
+          <div class="t-title">The Celebration — Private Venue</div>
+          <div class="t-desc">Rooftop or beach bar buyout. DJ with decade playlist — 2000 through 2026. Photo booth with custom overlay. Passed appetizers. Late-night bites at 10:30 PM. Signature cocktail named after the line. This is The Reawakening at full power.</div>
+        </div>
+      </div>
+    </div>
+
+    <div id="d5" class="day-panel">
+      <div class="day-header">
+        <div class="day-num">05</div>
+        <div class="day-info"><h3>The Send-Off</h3><p>Sunday · April 26th · Close the Circle</p></div>
+      </div>
+      <div class="timeline">
+        <div class="t-item">
+          <div class="t-time">Morning · 9:30 AM</div>
+          <div class="t-title">Farewell Brunch</div>
+          <div class="t-desc">Casual. Comfortable. Unhurried. Fresh pastries, good coffee, no production. Some sorors will eat quickly and pack. Others will sit for two hours. Both are right.</div>
+        </div>
+        <div class="t-item">
+          <div class="t-time">Before Departures</div>
+          <div class="t-title">The Closing Circle</div>
+          <div class="t-desc">One soror leads a closing prayer. Then each woman speaks one word — just one — that describes the weekend. No speeches. No summaries. One word. It will be the most powerful moment of the entire trip. Then you go. Until next time.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SUPERLATIVES -->
+<section id="superlatives">
+  <div class="section-label">
+    <div class="section-label-line"></div>
+    <span>25 Years · 25 Superlatives</span>
+    <div class="section-label-line right"></div>
+  </div>
+  <h2 class="section-title">The <em>Awards</em><br>Are In.</h2>
+  <p class="section-desc">Twenty-five years tells a story. Winners announced at the Crimson Affair Friday night.</p>
+
+  <div class="superlatives-grid">
+    <div class="superlative-card"><span class="sup-award">👑</span><div class="sup-title">Most Likely To</div><div class="sup-name">Still Be the Life of the Party</div><div class="sup-desc">Twenty-five years later and she still walks into a room and changes the energy. Some things never change — and thank God for that.</div><span class="sup-winner">To Be Announced</span></div>
+    <div class="superlative-card"><span class="sup-award">📱</span><div class="sup-title">Most Likely To</div><div class="sup-name">Post Before the Night is Over</div><div class="sup-desc">The caption is already written. The filter is already chosen. She was born for the 'gram.</div><span class="sup-winner">To Be Announced</span></div>
+    <div class="superlative-card"><span class="sup-award">⏰</span><div class="sup-title">Most Likely To</div><div class="sup-name">Still Be Running Late</div><div class="sup-desc">We learned to tell her the reservation is an hour earlier. We love her anyway.</div><span class="sup-winner">To Be Announced</span></div>
+    <div class="superlative-card"><span class="sup-award">😂</span><div class="sup-title">Most Likely To</div><div class="sup-name">Make Everyone Cry Laughing at the Tribute Dinner</div><div class="sup-desc">She stood up to say something meaningful and somehow turned it into a 10-minute stand-up set.</div><span class="sup-winner">To Be Announced</span></div>
+    <div class="superlative-card"><span class="sup-award">💼</span><div class="sup-title">Most Likely To</div><div class="sup-name">Have a Business Card for Every Occasion</div><div class="sup-desc">Three companies, two side hustles, and a Canva template for everything.</div><span class="sup-winner">To Be Announced</span></div>
+    <div class="superlative-card"><span class="sup-award">🙏</span><div class="sup-title">Most Likely To</div><div class="sup-name">Pray Over Every Meal Including Snacks</div><div class="sup-desc">She is not eating until God gets His acknowledgment. Respectfully.</div><span class="sup-winner">To Be Announced</span></div>
+    <div class="superlative-card"><span class="sup-award">🎤</span><div class="sup-title">Most Likely To</div><div class="sup-name">Know Every Word to Every 2000s Song</div><div class="sup-desc">The DJ has not played a single song she doesn't know front to back.</div><span class="sup-winner">To Be Announced</span></div>
+    <div class="superlative-card"><span class="sup-award">📸</span><div class="sup-title">Most Likely To</div><div class="sup-name">Direct the Group Photo Without Being Asked</div><div class="sup-desc">Nobody assigned her the role. She assumed it. Everyone is grateful.</div><span class="sup-winner">To Be Announced</span></div>
+    <div class="superlative-card"><span class="sup-award">🍷</span><div class="sup-title">Most Likely To</div><div class="sup-name">Ask What's in Everything Before Ordering</div><div class="sup-desc">She has questions. Many questions. The waiter has been summoned three times.</div><span class="sup-winner">To Be Announced</span></div>
+    <div class="superlative-card"><span class="sup-award">💤</span><div class="sup-title">Most Likely To</div><div class="sup-name">Be Asleep by 10 PM on Saturday</div><div class="sup-desc">She came. She celebrated. She gave everything. Then she went to sleep — unapologetically.</div><span class="sup-winner">To Be Announced</span></div>
+    <div class="superlative-card"><span class="sup-award">🌍</span><div class="sup-title">Most Likely To</div><div class="sup-name">Have Already Been to This Destination</div><div class="sup-desc">She has been everywhere. She has recommendations and a local contact. We are thankful.</div><span class="sup-winner">To Be Announced</span></div>
+    <div class="superlative-card"><span class="sup-award">💅</span><div class="sup-title">Most Likely To</div><div class="sup-name">Show Up Most Impeccably Dressed</div><div class="sup-desc">She treated this trip like the Met Gala. Every day. Every meal. We are taking notes.</div><span class="sup-winner">To Be Announced</span></div>
+    <div class="superlative-card"><span class="sup-award">💰</span><div class="sup-title">Most Likely To</div><div class="sup-name">Venmo You Before You Even Ask</div><div class="sup-desc">Already paid up, with a spreadsheet, tracking the group balance since January 2026.</div><span class="sup-winner">To Be Announced</span></div>
+    <div class="superlative-card"><span class="sup-award">🥺</span><div class="sup-title">Most Likely To</div><div class="sup-name">Cry First at the Tribute Dinner</div><div class="sup-desc">She held it together for 45 seconds. The tissues were for her. We love her for it.</div><span class="sup-winner">To Be Announced</span></div>
+    <div class="superlative-card"><span class="sup-award">🗣️</span><div class="sup-title">Most Likely To</div><div class="sup-name">Still Have the Best Tea After 25 Years</div><div class="sup-desc">She remembers everything. Every detail. Every story. Tell it again.</div><span class="sup-winner">To Be Announced</span></div>
+    <div class="superlative-card"><span class="sup-award">🌟</span><div class="sup-title">Most Inspiring</div><div class="sup-name">Most Likely to Change the World — and Already Has</div><div class="sup-desc">She crossed with a vision and never let it go. The world looks different because she was in it.</div><span class="sup-winner">To Be Announced</span></div>
+    <div class="superlative-card"><span class="sup-award">🤝</span><div class="sup-title">Most Likely To</div><div class="sup-name">Check on Everyone Before Herself</div><div class="sup-desc">She called every soror before the trip. She is the glue. She always has been.</div><span class="sup-winner">To Be Announced</span></div>
+    <div class="superlative-card"><span class="sup-award">🎯</span><div class="sup-title">Most Likely To</div><div class="sup-name">Have Already Researched Everything About Barbados</div><div class="sup-desc">She has a Google Doc, a saved Instagram folder, and three restaurant reservations waiting.</div><span class="sup-winner">To Be Announced</span></div>
+    <div class="superlative-card"><span class="sup-award">🔥</span><div class="sup-title">Most Unchanged Since 2002</div><div class="sup-name">Exactly Who She Was the Day She Crossed</div><div class="sup-desc">Same laugh. Same walk. Same energy. Time touched everything around her and somehow left her untouched.</div><span class="sup-winner">To Be Announced</span></div>
+    <div class="superlative-card"><span class="sup-award">📖</span><div class="sup-title">Most Likely To</div><div class="sup-name">Quote Scripture in Every Conversation</div><div class="sup-desc">She has a verse for everything. We are covered spiritually at all times.</div><span class="sup-winner">To Be Announced</span></div>
+    <div class="superlative-card"><span class="sup-award">🏆</span><div class="sup-title">Most Glow-Up Since Crossing</div><div class="sup-name">She Understood the Assignment and Rewrote It</div><div class="sup-desc">Every year has been a plot twist nobody saw coming — and every one has been better than the last.</div><span class="sup-winner">To Be Announced</span></div>
+    <div class="superlative-card"><span class="sup-award">🎬</span><div class="sup-title">Most Likely To</div><div class="sup-name">Document the Entire Trip in Real Time</div><div class="sup-desc">The vlog is already titled. The ring light is in her carry-on. The Reawakening is getting its own series.</div><span class="sup-winner">To Be Announced</span></div>
+    <div class="superlative-card"><span class="sup-award">💪</span><div class="sup-title">Most Likely To</div><div class="sup-name">Still Be Running the Group Chat in 2052</div><div class="sup-desc">Good morning messages. Birthday reminders. She is the heartbeat of this line.</div><span class="sup-winner">To Be Announced</span></div>
+    <div class="superlative-card"><span class="sup-award">🎁</span><div class="sup-title">Most Likely To</div><div class="sup-name">Show Up with Gifts for Everyone</div><div class="sup-desc">She did not come empty-handed. She never does. There is a gift for every soror in her luggage.</div><span class="sup-winner">To Be Announced</span></div>
+    <div class="superlative-card"><span class="sup-award">❤️</span><div class="sup-title">The Covenant Award</div><div class="sup-name">Most Likely to Still Be Doing This at the 50th</div><div class="sup-desc">Some bonds were not made by time — they were made by God. She knows it. She lives it.</div><span class="sup-winner">To Be Announced</span></div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- DEPOSIT -->
+<div class="deposit-section" id="deposit">
+  <div class="deposit-eyebrow">Secure Your Spot · Non-Refundable</div>
+  <h2 class="deposit-title">Hold Your<br><em>Place.</em></h2>
+  <p class="deposit-desc">A $75 non-refundable deposit confirms your spot on The Reawakening. No deposit, no roster. We love you too much to leave you out — so don't make us.</p>
+  <div class="deposit-amount">$75</div>
+  <div class="deposit-amount-label">Non-Refundable Deposit · First of 5 Payments</div>
+  <div class="deposit-methods">
+    <button class="deposit-btn primary" onclick="openModal()">💸 Pay My Deposit Now</button>
+    <button class="deposit-btn" onclick="switchToPortal()">💳 View My Full Balance</button>
+  </div>
+  <div class="deposit-note">Payment handles updated when finalized. Include your full name in the payment memo.</div>
+</div>
+
+<div class="divider"></div>
+
+<!-- MEMORIES -->
+<section id="memories">
+  <div class="section-label">
+    <div class="section-label-line"></div>
+    <span>Our Memories · Upload & Share</span>
+    <div class="section-label-line right"></div>
+  </div>
+  <h2 class="section-title">The <em>Memories</em><br>Live Here.</h2>
+  <p class="section-desc">Upload your photos and videos. Every moment captured. Every memory preserved.</p>
+
+  <div class="upload-section">
+    <div class="upload-area" id="uploadArea" onclick="document.getElementById('fileInput').click()" ondragover="handleDragOver(event)" ondrop="handleDrop(event)" ondragleave="handleDragLeave(event)">
+      <span class="upload-icon">📸</span>
+      <div class="upload-title">Drop Your Memories Here</div>
+      <div class="upload-desc">Photos and videos from The Reawakening · JPG, PNG, MP4, MOV · Max 50MB per file</div>
+      <button class="upload-btn" onclick="event.stopPropagation(); document.getElementById('fileInput').click()">Choose Files</button>
+    </div>
+    <input type="file" id="fileInput" multiple accept="image/*,video/*" onchange="handleFiles(this.files)">
+    <div class="upload-count" id="uploadCount"></div>
+    <div class="media-grid" id="mediaGrid"></div>
+  </div>
+</section>
+
+<div class="scripture">
+  <div class="scripture-text">"A friend loveth at all times, and a sister is born for adversity."</div>
+  <div class="scripture-ref">Proverbs 17:17 · King James Version · The Reawakening · Spring 2002 · 25 Years</div>
+</div>
+
+<footer>
+  <div class="footer-logo">The Reawakening</div>
+  <div class="footer-sub">Silver Deltaversary · XXV · Spring 2002–2027 · Delta Sigma Theta Sorority, Inc.</div>
+  <ul class="footer-links">
+    <li><a onclick="scrollTo('destination')">Destination</a></li>
+    <li><a onclick="scrollTo('accommodations')">Stay</a></li>
+    <li><a onclick="scrollTo('itinerary')">Itinerary</a></li>
+    <li><a onclick="scrollTo('superlatives')">Superlatives</a></li>
+    <li><a onclick="scrollTo('memories')">Memories</a></li>
+    <li><a onclick="switchToPortal()">My Payments</a></li>
+  </ul>
+  <div class="footer-copy">© 2027 The Reawakening · Spring 2002 Line · Delta Sigma Theta Sorority, Inc.</div>
+</footer>
+
+<!-- DEPOSIT MODAL -->
+<div class="modal-overlay" id="depositModal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div class="modal-title">Secure Your Spot</div>
+    <div class="modal-desc">Submit your $75 non-refundable deposit to confirm your place on The Reawakening. Send payment and include your name in the memo.</div>
+    <div class="modal-amount">$75</div>
+    <div class="modal-methods">
+      <div class="modal-method"><span class="modal-method-name">💸 Venmo</span><span class="modal-method-handle">[HANDLE COMING SOON]</span></div>
+      <div class="modal-method"><span class="modal-method-name">💳 Zelle</span><span class="modal-method-handle">[HANDLE COMING SOON]</span></div>
+      <div class="modal-method"><span class="modal-method-name">💚 CashApp</span><span class="modal-method-handle">[HANDLE COMING SOON]</span></div>
+    </div>
+    <div class="modal-note">⚠️ Deposit is non-refundable. Include your full name in the payment memo. For full balance tracking, use the Payment Portal.</div>
+  </div>
+</div>
+
+</div><!-- end site-view -->
+
+<!-- =============================================
+     PORTAL VIEW — Payment Portal
+     ============================================= -->
+<div class="portal-view" id="portalView">
+
+<!-- Portal Toast -->
+<div class="p-toast" id="pToast">
+  <div class="p-toast-icon">✓</div>
+  <div class="p-toast-text" id="pToastText"></div>
+</div>
+
+<!-- Payment Modal -->
+<div class="p-modal-overlay" id="pPaymentModal">
+  <div class="p-modal">
+    <button class="p-modal-close" onclick="closePPaymentModal()">✕</button>
+    <div class="p-modal-eyebrow">Secure Payment</div>
+    <div class="p-modal-title" id="pModalTitle">Submit Payment</div>
+    <div class="p-modal-amount-display">
+      <div class="p-modal-amount-label">Amount Due</div>
+      <div class="p-modal-amount-num" id="pModalAmount">$75</div>
+    </div>
+    <div class="p-payment-methods">
+      <div class="p-method-card selected" onclick="pSelectMethod(this)">
+        <div class="p-method-left"><span class="p-method-icon">💸</span><div><div class="p-method-name">Venmo</div><div class="p-method-handle">[HANDLE COMING SOON]</div></div></div>
+        <div class="p-method-radio"></div>
+      </div>
+      <div class="p-method-card" onclick="pSelectMethod(this)">
+        <div class="p-method-left"><span class="p-method-icon">💳</span><div><div class="p-method-name">Zelle</div><div class="p-method-handle">[HANDLE COMING SOON]</div></div></div>
+        <div class="p-method-radio"></div>
+      </div>
+      <div class="p-method-card" onclick="pSelectMethod(this)">
+        <div class="p-method-left"><span class="p-method-icon">💚</span><div><div class="p-method-name">CashApp</div><div class="p-method-handle">[HANDLE COMING SOON]</div></div></div>
+        <div class="p-method-radio"></div>
+      </div>
+    </div>
+    <button class="p-confirm-btn" onclick="pConfirmPayment()">Confirm Payment Submitted</button>
+    <div class="p-modal-note">⚠️ After sending payment, click confirm to log it. Finance Lead will verify within 24 hours. Include your full name in the memo.</div>
+  </div>
+</div>
+
+<!-- Add Soror Modal -->
+<div class="p-modal-overlay" id="pAddSororModal">
+  <div class="p-add-modal">
+    <button class="p-modal-close" onclick="document.getElementById('pAddSororModal').classList.remove('open')">✕</button>
+    <div class="p-modal-eyebrow">Admin · Add Soror</div>
+    <div class="p-modal-title" style="font-size:28px;margin-bottom:24px;color:#F2EBE0;">Add New Soror</div>
+    <div class="p-form-group"><label class="p-form-label">Full Name</label><input type="text" class="p-form-input" id="pNewSororName" placeholder="Soror Full Name"></div>
+    <div class="p-form-group"><label class="p-form-label">Login Password</label><input type="text" class="p-form-input" id="pNewSororPass" placeholder="Temporary password"></div>
+    <div class="p-form-group"><label class="p-form-label">Email (Optional)</label><input type="email" class="p-form-input" id="pNewSororEmail" placeholder="email@example.com"></div>
+    <button class="p-confirm-btn" style="margin-top:20px;" onclick="pAddSoror()">Add Soror to Portal</button>
+  </div>
+</div>
+
+<!-- LOGIN SCREEN -->
+<div id="pLoginScreen" class="p-screen active">
+  <div class="p-login-bg"></div>
+  <div class="p-login-grid"></div>
+  <button class="p-back-btn" onclick="switchToSite()">← Back to Site</button>
+  <div class="login-box">
+    <div class="login-logo">The Reawakening</div>
+    <h1 class="login-title">Payment<br><em>Portal</em></h1>
+    <p class="login-sub">Barbados · April 22–27, 2027 · ΔΣΘ</p>
+    <div class="p-form-group">
+      <label class="p-form-label">Select Your Name</label>
+      <select class="p-form-select" id="pSororSelect"><option value="">— Choose your name —</option></select>
+    </div>
+    <div class="p-form-group">
+      <label class="p-form-label">Password</label>
+      <input type="password" class="p-form-input" id="pLoginPassword" placeholder="Enter your password" onkeydown="if(event.key==='Enter') pDoLogin()">
+    </div>
+    <button class="p-login-btn" onclick="pDoLogin()">Enter Portal</button>
+    <div class="p-login-error" id="pLoginError">Incorrect password. Please try again.</div>
+    <div class="p-admin-toggle" onclick="pToggleAdminLogin()">Finance Lead / Admin Login →</div>
+  </div>
+</div>
+
+<!-- SOROR DASHBOARD -->
+<div id="pSororScreen" class="p-screen">
+  <nav class="portal-nav">
+    <div class="p-nav-brand">The Reawakening</div>
+    <div class="p-nav-right">
+      <button class="p-back-site-btn" onclick="switchToSite()">← Back to Site</button>
+      <div class="p-nav-user">Soror <span id="pNavSororName"></span></div>
+      <button class="p-logout-btn" onclick="pLogout()">Sign Out</button>
+    </div>
+  </nav>
+
+  <div class="dashboard-body">
+    <div class="dash-header">
+      <h1 class="dash-greeting">Welcome back,<br><em id="pDashName"></em></h1>
+      <p class="dash-sub">Barbados · April 22–27, 2027 · Your payment dashboard</p>
+    </div>
+
+    <div class="balance-strip">
+      <div class="bal-card"><div class="bal-label">Total Trip Cost</div><div class="bal-amount">$2,000</div><div class="bal-desc">Land only · Flights self-booked</div></div>
+      <div class="bal-card primary"><div class="bal-label">Amount Paid</div><div class="bal-amount" id="pDashPaid">$0</div><div class="bal-desc">Confirmed by Finance Lead</div></div>
+      <div class="bal-card"><div class="bal-label">Remaining Balance</div><div class="bal-amount" id="pDashRemaining">$2,000</div><div class="bal-desc">Across all installments</div></div>
+    </div>
+
+    <div class="p-section-title">Payment Schedule</div>
+    <div class="installments-list" id="pInstallmentsList"></div>
+    <div class="p-section-title">Recent Activity</div>
+    <div class="activity-list" id="pActivityList">
+      <div class="activity-item">
+        <span class="activity-icon">🎉</span>
+        <div class="activity-text">Welcome to The Reawakening payment portal, Soror. Your trip to <strong>Barbados</strong> awaits.</div>
+        <div class="activity-time">Today</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="portal-footer">
+    <p>"A friend loveth at all times, and a sister is born for adversity."</p>
+    <span>Proverbs 17:17 · KJV · Spring 2002 · 25 Years</span>
+  </div>
+</div>
+
+<!-- ADMIN DASHBOARD -->
+<div id="pAdminScreen" class="p-screen">
+  <nav class="portal-nav">
+    <div class="p-nav-brand">The Reawakening · Admin</div>
+    <div class="p-nav-right">
+      <button class="p-back-site-btn" onclick="switchToSite()">← Back to Site</button>
+      <div class="p-nav-user">Finance Lead <span>Kim</span></div>
+      <button class="p-logout-btn" onclick="pLogout()">Sign Out</button>
+    </div>
+  </nav>
+
+  <div class="admin-body">
+    <div class="dash-header">
+      <h1 class="dash-greeting" style="color:#F2EBE0;">Finance <em>Dashboard</em></h1>
+      <p class="dash-sub">Full payment overview · All sorors · Live balances</p>
+    </div>
+
+    <div class="admin-stats">
+      <div class="a-stat-card highlight"><div class="a-stat-label">Total Collected</div><div class="a-stat-value" id="pAdminCollected">$0</div><div class="a-stat-sub">Across all sorors</div></div>
+      <div class="a-stat-card"><div class="a-stat-label">Total Outstanding</div><div class="a-stat-value" id="pAdminOutstanding">$0</div><div class="a-stat-sub">Still to collect</div></div>
+      <div class="a-stat-card"><div class="a-stat-label">Sorors Fully Paid</div><div class="a-stat-value" id="pAdminFullyPaid">0</div><div class="a-stat-sub">of <span id="pAdminTotal">0</span> total</div></div>
+      <div class="a-stat-card"><div class="a-stat-label">Deposits Received</div><div class="a-stat-value" id="pAdminDeposits">0</div><div class="a-stat-sub">$75 deposit confirmed</div></div>
+    </div>
+
+    <div class="admin-controls">
+      <input type="text" class="a-search-input" id="pSearchInput" placeholder="Search soror name..." oninput="pFilterTable()">
+      <button class="a-filter-btn active" onclick="pSetFilter('all', this)">All</button>
+      <button class="a-filter-btn" onclick="pSetFilter('pending', this)">Has Balance</button>
+      <button class="a-filter-btn" onclick="pSetFilter('paid', this)">Fully Paid</button>
+      <button class="a-add-btn" onclick="document.getElementById('pAddSororModal').classList.add('open')">+ Add Soror</button>
+    </div>
+
+    <div class="table-wrap">
+      <div class="table-header-row">
+        <div class="th">Soror</div>
+        <div class="th">Deposit</div>
+        <div class="th">Total Paid</div>
+        <div class="th">Remaining</div>
+        <div class="th">Progress</div>
+        <div class="th">Actions</div>
+      </div>
+      <div class="table-body" id="pAdminTable"></div>
+    </div>
+  </div>
+
+  <div class="portal-footer">
+    <p>"Be thou diligent to know the state of thy flocks."</p>
+    <span>Proverbs 27:23 · KJV · Finance Lead Dashboard</span>
+  </div>
+</div>
+
+</div><!-- end portal-view -->
+
+<script>
+// ============================================
+// SITE NAVIGATION
+// ============================================
+function scrollToTop() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
+
+function scrollTo(id) {
+  const el = document.getElementById(id);
+  if (el) el.scrollIntoView({ behavior: 'smooth' });
+}
+
+function switchToPortal() {
+  document.getElementById('siteView').classList.remove('active');
+  document.getElementById('portalView').classList.add('active');
+  window.scrollTo(0, 0);
+  pPopulateSororSelect();
+}
+
+function switchToSite() {
+  document.getElementById('portalView').classList.remove('active');
+  document.getElementById('siteView').classList.add('active');
+  window.scrollTo(0, 0);
+}
+
+// ============================================
+// SITE — DEPOSIT MODAL
+// ============================================
+function openModal() { document.getElementById('depositModal').classList.add('open'); document.body.style.overflow='hidden'; }
+function closeModal() { document.getElementById('depositModal').classList.remove('open'); document.body.style.overflow=''; }
+document.getElementById('depositModal').addEventListener('click', function(e) { if(e.target===this) closeModal(); });
+
+// ============================================
+// SITE — MEDIA UPLOAD
+// ============================================
+let uploadedFiles = [];
+
+function handleFiles(files) {
+  Array.from(files).forEach(file => {
+    if (file.size > 50*1024*1024) { alert(file.name + ' exceeds 50MB'); return; }
+    const reader = new FileReader();
+    const id = Date.now() + Math.random();
+    reader.onload = e => {
+      uploadedFiles.push({ id, name: file.name, url: e.target.result, type: file.type });
+      renderMedia();
+    };
+    reader.readAsDataURL(file);
+  });
+}
+
+function renderMedia() {
+  const grid = document.getElementById('mediaGrid');
+  const count = document.getElementById('uploadCount');
+  grid.innerHTML = uploadedFiles.map(f => `
+    <div class="media-item">
+      ${f.type.startsWith('video') ? `<video src="${f.url}" muted loop playsinline onmouseenter="this.play()" onmouseleave="this.pause()"></video>` : `<img src="${f.url}" alt="${f.name}">`}
+      <button class="media-item-remove" onclick="removeFile('${f.id}')">✕</button>
+    </div>
+  `).join('');
+  count.textContent = uploadedFiles.length > 0 ? uploadedFiles.length + ' file' + (uploadedFiles.length>1?'s':'') + ' uploaded' : '';
+}
+
+function removeFile(id) { uploadedFiles = uploadedFiles.filter(f => f.id != id); renderMedia(); }
+
+function handleDragOver(e) { e.preventDefault(); document.getElementById('uploadArea').classList.add('dragover'); }
+function handleDragLeave() { document.getElementById('uploadArea').classList.remove('dragover'); }
+function handleDrop(e) { e.preventDefault(); document.getElementById('uploadArea').classList.remove('dragover'); handleFiles(e.dataTransfer.files); }
+
+// Scroll animations
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) { entry.target.style.opacity='1'; entry.target.style.transform='translateY(0)'; }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.accom-card, .superlative-card, .t-item, .dest-option').forEach(el => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(20px)';
+  el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+  observer.observe(el);
+});
+
+// Custom cursor
+const cursor = document.getElementById('cursor');
+document.addEventListener('mousemove', e => { cursor.style.left = e.clientX-4+'px'; cursor.style.top = e.clientY-4+'px'; });
+
+// Itinerary
+function showDay(id, btn) {
+  document.querySelectorAll('.day-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.day-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+}
+
+// ============================================
+// PORTAL — DATA
+// ============================================
+const P_INSTALLMENTS = [
+  { id: 1, name: 'Deposit', date: 'Due Now · May 2026', amount: 75, description: 'Non-refundable. Confirms your spot on the roster.' },
+  { id: 2, name: 'Second Payment', date: 'August 2026', amount: 425, description: 'Hotel block deposit and activity pre-bookings.' },
+  { id: 3, name: 'Third Payment', date: 'November 2026', amount: 425, description: 'Venue, catering deposits, and photographer contract.' },
+  { id: 4, name: 'Fourth Payment', date: 'January 2027', amount: 425, description: 'Welcome bags, merch production, and ground transport.' },
+  { id: 5, name: 'Final Balance', date: 'March 2027', amount: 650, description: 'Remaining costs, tips fund, and contingency reserve.' }
+];
+
+const P_ADMIN = { name: 'Kim', password: 'admin2027' };
+
+let pSorors = [
+  { id: 1, name: 'Soror 1', password: 'soror1', email: '', payments: {1:false,2:false,3:false,4:false,5:false}, pendingPayments: {} },
+  { id: 2, name: 'Soror 2', password: 'soror2', email: '', payments: {1:false,2:false,3:false,4:false,5:false}, pendingPayments: {} },
+  { id: 3, name: 'Soror 3', password: 'soror3', email: '', payments: {1:false,2:false,3:false,4:false,5:false}, pendingPayments: {} },
+];
+
+function pLoadData() {
+  try { const s = localStorage.getItem('reawakening_sorors_v2'); if(s) pSorors = JSON.parse(s); } catch(e) {}
+}
+
+function pSaveData() {
+  try { localStorage.setItem('reawakening_sorors_v2', JSON.stringify(pSorors)); } catch(e) {}
+}
+
+let pCurrentUser = null;
+let pCurrentInstallmentId = null;
+let pAdminFilter = 'all';
+let pIsAdminMode = false;
+
+pLoadData();
+
+function pPopulateSororSelect() {
+  const sel = document.getElementById('pSororSelect');
+  sel.innerHTML = '<option value="">— Choose your name —</option>';
+  pSorors.forEach(s => {
+    const opt = document.createElement('option');
+    opt.value = s.id; opt.textContent = s.name; sel.appendChild(opt);
+  });
+}
+
+// ============================================
+// PORTAL — LOGIN
+// ============================================
+function pToggleAdminLogin() {
+  pIsAdminMode = !pIsAdminMode;
+  const sel = document.getElementById('pSororSelect');
+  const tog = document.querySelector('.p-admin-toggle');
+  if (pIsAdminMode) {
+    sel.style.display='none';
+    document.getElementById('pLoginPassword').placeholder='Admin password';
+    tog.textContent='← Soror Login';
+  } else {
+    sel.style.display='block';
+    document.getElementById('pLoginPassword').placeholder='Enter your password';
+    tog.textContent='Finance Lead / Admin Login →';
+  }
+  document.getElementById('pLoginError').style.display='none';
+}
+
+function pDoLogin() {
+  const pass = document.getElementById('pLoginPassword').value;
+  const err = document.getElementById('pLoginError');
+
+  if (pIsAdminMode) {
+    if (pass === P_ADMIN.password) {
+      pCurrentUser = { isAdmin: true };
+      pShowPScreen('pAdminScreen');
+      pRenderAdmin();
+    } else { err.style.display='block'; err.textContent='Incorrect admin password.'; }
+    return;
+  }
+
+  const id = parseInt(document.getElementById('pSororSelect').value);
+  if (!id) { err.style.display='block'; err.textContent='Please select your name.'; return; }
+  const soror = pSorors.find(s => s.id === id);
+  if (!soror) { err.style.display='block'; err.textContent='Soror not found.'; return; }
+
+  if (pass === soror.password) {
+    pCurrentUser = { isAdmin: false, soror };
+    pShowPScreen('pSororScreen');
+    pRenderSororDash(soror);
+    err.style.display='none';
+  } else { err.style.display='block'; err.textContent='Incorrect password. Please try again.'; }
+}
+
+function pLogout() {
+  pCurrentUser = null;
+  document.getElementById('pLoginPassword').value='';
+  document.getElementById('pSororSelect').value='';
+  pShowPScreen('pLoginScreen');
+}
+
+function pShowPScreen(id) {
+  document.querySelectorAll('.p-screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+
+// ============================================
+// PORTAL — SOROR DASHBOARD
+// ============================================
+function pRenderSororDash(soror) {
+  document.getElementById('pNavSororName').textContent = soror.name;
+  document.getElementById('pDashName').textContent = soror.name;
+
+  const totalPaid = Object.entries(soror.payments).filter(([id,p])=>p).reduce((sum,[id])=>sum+P_INSTALLMENTS.find(i=>i.id==id).amount,0);
+  document.getElementById('pDashPaid').textContent = '$'+totalPaid.toLocaleString();
+  document.getElementById('pDashRemaining').textContent = '$'+(2000-totalPaid).toLocaleString();
+
+  const list = document.getElementById('pInstallmentsList');
+  list.innerHTML='';
+
+  P_INSTALLMENTS.forEach(inst => {
+    const paid = soror.payments[inst.id];
+    const pend = soror.pendingPayments && soror.pendingPayments[inst.id];
+    const row = document.createElement('div');
+    row.className='install-row';
+
+    const nextDue = pGetNextDue(soror);
+    let sc = paid ? 'i-paid' : (inst.id===nextDue ? 'i-due' : 'i-upcoming');
+    let act = '';
+
+    if (paid) act='<div class="p-paid-badge">✓ Confirmed</div>';
+    else if (pend) act='<div class="p-paid-badge" style="color:var(--amber);border-color:rgba(245,158,11,0.3);">⏳ Pending Review</div>';
+    else if (inst.id===nextDue || (inst.id>1 && soror.payments[inst.id-1])) act=`<button class="p-pay-btn" onclick="pOpenPaymentModal(${inst.id})">Pay Now</button>`;
+    else act='<div class="p-upcoming-badge">Upcoming</div>';
+
+    row.innerHTML=`
+      <div class="install-status ${sc}"></div>
+      <div><div class="install-name">${inst.name}</div><div class="install-date">${inst.date} · ${inst.description}</div></div>
+      <div class="install-amount">$${inst.amount.toLocaleString()}</div>
+      <div>${act}</div>`;
+    list.appendChild(row);
+  });
+}
+
+function pGetNextDue(soror) {
+  for (let i=1;i<=5;i++) { if(!soror.payments[i]) return i; }
+  return null;
+}
+
+// ============================================
+// PORTAL — PAYMENT MODAL
+// ============================================
+function pOpenPaymentModal(id) {
+  pCurrentInstallmentId=id;
+  const inst=P_INSTALLMENTS.find(i=>i.id===id);
+  document.getElementById('pModalTitle').textContent=inst.name;
+  document.getElementById('pModalAmount').textContent='$'+inst.amount.toLocaleString();
+  document.getElementById('pPaymentModal').classList.add('open');
+}
+
+function closePPaymentModal() { document.getElementById('pPaymentModal').classList.remove('open'); pCurrentInstallmentId=null; }
+
+function pSelectMethod(card) {
+  document.querySelectorAll('.p-method-card').forEach(c=>c.classList.remove('selected'));
+  card.classList.add('selected');
+}
+
+function pConfirmPayment() {
+  if (!pCurrentInstallmentId||!pCurrentUser||pCurrentUser.isAdmin) return;
+  const soror=pSorors.find(s=>s.id===pCurrentUser.soror.id);
+  if (!soror.pendingPayments) soror.pendingPayments={};
+  soror.pendingPayments[pCurrentInstallmentId]=true;
+  pSaveData();
+  closePPaymentModal();
+  pRenderSororDash(soror);
+  pCurrentUser.soror=soror;
+  const inst=P_INSTALLMENTS.find(i=>i.id===pCurrentInstallmentId);
+  pShowToast(`<strong>${inst.name} submitted!</strong> Finance Lead will confirm within 24 hours.`);
+  const actList=document.getElementById('pActivityList');
+  const item=document.createElement('div');
+  item.className='activity-item';
+  item.innerHTML=`<span class="activity-icon">💸</span><div class="activity-text"><strong>${inst.name} ($${inst.amount})</strong> submitted for review.</div><div class="activity-time">Just now</div>`;
+  actList.insertBefore(item,actList.firstChild);
+}
+
+// ============================================
+// PORTAL — ADMIN
+// ============================================
+function pRenderAdmin() {
+  let collected=0,outstanding=0,fullyPaid=0,deposits=0;
+  pSorors.forEach(s=>{
+    const paid=Object.entries(s.payments).filter(([id,p])=>p).reduce((sum,[id])=>sum+P_INSTALLMENTS.find(i=>i.id==id).amount,0);
+    collected+=paid; outstanding+=(2000-paid);
+    if(paid===2000) fullyPaid++;
+    if(s.payments[1]) deposits++;
+  });
+  document.getElementById('pAdminCollected').textContent='$'+collected.toLocaleString();
+  document.getElementById('pAdminOutstanding').textContent='$'+outstanding.toLocaleString();
+  document.getElementById('pAdminFullyPaid').textContent=fullyPaid;
+  document.getElementById('pAdminTotal').textContent=pSorors.length;
+  document.getElementById('pAdminDeposits').textContent=deposits;
+  pRenderAdminTable(pSorors);
+}
+
+function pRenderAdminTable(list) {
+  const tbody=document.getElementById('pAdminTable');
+  tbody.innerHTML='';
+  list.forEach(s=>{
+    const paid=Object.entries(s.payments).filter(([id,p])=>p).reduce((sum,[id])=>sum+P_INSTALLMENTS.find(i=>i.id==id).amount,0);
+    const rem=2000-paid;
+    const pct=Math.round((paid/2000)*100);
+    const depPaid=s.payments[1];
+    const pendIds=Object.entries(s.pendingPayments||{}).filter(([id,p])=>p&&!s.payments[id]).map(([id])=>id);
+    const pendBtns=pendIds.map(id=>{const inst=P_INSTALLMENTS.find(i=>i.id==id);return `<button class="mark-paid-btn" onclick="pMarkPaid(${s.id},${id})">✓ Confirm $${inst.amount}</button>`;}).join('');
+    const row=document.createElement('div');
+    row.className='table-row';
+    row.dataset.name=s.name.toLowerCase();
+    row.dataset.status=rem===0?'paid':'pending';
+    row.innerHTML=`
+      <div class="td name"><div class="soror-name">${s.name}</div><div class="soror-email">${s.email||'No email'}${Object.values(s.pendingPayments||{}).some(p=>p)?'· <span style="color:var(--amber);font-size:10px;">⏳ Pending</span>':''}</div></div>
+      <div class="td"><span class="${depPaid?'a-paid':'a-due'}">${depPaid?'✓ $75':'✗ Unpaid'}</span></div>
+      <div class="td"><span class="a-paid">$${paid.toLocaleString()}</span></div>
+      <div class="td"><span class="${rem>0?'a-due':'a-paid'}">$${rem.toLocaleString()}</span></div>
+      <div class="td progress-cell"><div class="mini-progress"><div class="mini-fill" style="width:${pct}%"></div></div><div class="progress-pct">${pct}%</div></div>
+      <div class="td" style="flex-direction:column;gap:4px;align-items:flex-end;">${pendBtns}<button class="a-action-btn" onclick="pResetSoror(${s.id})">Reset</button></div>`;
+    tbody.appendChild(row);
+  });
+}
+
+function pMarkPaid(sId,instId) {
+  const s=pSorors.find(x=>x.id===sId);
+  if(!s) return;
+  s.payments[instId]=true;
+  if(s.pendingPayments) s.pendingPayments[instId]=false;
+  pSaveData(); pRenderAdmin();
+  const inst=P_INSTALLMENTS.find(i=>i.id==instId);
+  pShowToast(`<strong>${s.name}</strong> — ${inst.name} ($${inst.amount}) confirmed ✓`);
+}
+
+function pResetSoror(id) {
+  const s=pSorors.find(x=>x.id===id);
+  if(!s||!confirm(`Reset all payments for ${s.name}?`)) return;
+  s.payments={1:false,2:false,3:false,4:false,5:false};
+  s.pendingPayments={};
+  pSaveData(); pRenderAdmin();
+}
+
+function pAddSoror() {
+  const name=document.getElementById('pNewSororName').value.trim();
+  const pass=document.getElementById('pNewSororPass').value.trim();
+  const email=document.getElementById('pNewSororEmail').value.trim();
+  if(!name||!pass){alert('Name and password required.');return;}
+  const newId=pSorors.length>0?Math.max(...pSorors.map(s=>s.id))+1:1;
+  pSorors.push({id:newId,name,password:pass,email,payments:{1:false,2:false,3:false,4:false,5:false},pendingPayments:{}});
+  pSaveData(); pPopulateSororSelect();
+  document.getElementById('pAddSororModal').classList.remove('open');
+  document.getElementById('pNewSororName').value='';
+  document.getElementById('pNewSororPass').value='';
+  document.getElementById('pNewSororEmail').value='';
+  pRenderAdmin();
+  pShowToast(`<strong>${name}</strong> added to the portal successfully.`);
+}
+
+function pFilterTable() {
+  const q=document.getElementById('pSearchInput').value.toLowerCase();
+  document.querySelectorAll('.table-row').forEach(row=>{
+    const nm=row.dataset.name.includes(q);
+    const st=pAdminFilter==='all'||row.dataset.status===pAdminFilter;
+    row.style.display=nm&&st?'grid':'none';
+  });
+}
+
+function pSetFilter(f,btn) {
+  pAdminFilter=f;
+  document.querySelectorAll('.a-filter-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  pFilterTable();
+}
+
+function pShowToast(msg) {
+  const t=document.getElementById('pToast');
+  document.getElementById('pToastText').innerHTML=msg;
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),4000);
+}
+
+// Close modals on overlay click
+document.getElementById('pPaymentModal').addEventListener('click',function(e){if(e.target===this)closePPaymentModal();});
+document.getElementById('pAddSororModal').addEventListener('click',function(e){if(e.target===this)this.classList.remove('open');});
+</script>
+</body>
+</html>
